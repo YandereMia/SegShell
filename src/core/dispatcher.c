@@ -7,7 +7,7 @@
 #include "../../inc/commands/commands.h"
 #include "../../inc/utils/input_cleaner.h"
 void run_script(const char *filename);
-
+extern const char *username;
 void dispatch_command(char *line) {
     // skip empty lines
     if (!line || !*line) return;
@@ -54,7 +54,7 @@ void dispatch_command(char *line) {
 
     // ---- execute binary ----
     char path[512];
-    snprintf(path, sizeof(path), "/home/yanderemia/segshell/bin/%s", argv[0]);
+    snprintf(path, sizeof(path), "/home/%s/segshell/bin/%s",username , argv[0]);
     if (access(path, X_OK) != 0) {
         printf("Unknown command: %s\n", argv[0]);
         return;

@@ -3,7 +3,6 @@ BUILD_DIR := build
 BIN_DIR := bin
 CC := gcc
 CFLAGS := -Wall -Wextra -O3
-#LDFLAGS := -ljansson -lm -ldl `pkg-config --libs gtk4`
 
 TARGET := SegShell
 
@@ -25,13 +24,6 @@ $(TARGET): $(OBJS)
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
-
-# Install binary to ~/.myshellos/bin
-INSTALL_DIR := $(HOME)/.myshellos/bin
-install: $(TARGET)
-	@mkdir -p $(INSTALL_DIR)
-	cp $(TARGET) $(INSTALL_DIR)/
-	@echo "✅ Installed $(TARGET) to $(INSTALL_DIR)"
 
 clean:
 	rm -rf $(BUILD_DIR) $(TARGET)

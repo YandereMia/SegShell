@@ -9,14 +9,15 @@
 #include <string.h>
 void get_path();
 char display_cwd[PATH_MAX];
+const char *username;
 int main(int argc, char *argv[]) {
     if (argc > 1) {
         run_script(argv[1]);
         return 0;
     }
-    
+
     char *env_user = getenv("USER");
-    const char *username = env_user ? env_user : "unknown";
+    username = env_user ? env_user : "unknown";
     char line[256];
     while (1) {
         get_path();

@@ -2,10 +2,9 @@
 
 # Modules (all standalone commands)
 MODULES = about cat calc clear echo help rm touch time whoami write ls
-
 # Directories
 BUILD_DIR = build
-INSTALL_DIR ?= /home/yanderemia/segshell/bin
+INSTALL_DIR ?= /home/$(USER)/segshell/bin
 
 # Compiler settings
 CC = gcc
