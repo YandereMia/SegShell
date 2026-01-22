@@ -1,0 +1,10 @@
+#echo test
+echo "Hello World"
+#ls test
+ls
+#pwd
+#echo "hello World"
+#asfjoisdfgoji
+pwd #Inline test
+#whoami test
+whoami

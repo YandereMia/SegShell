@@ -2,8 +2,8 @@ SRC_DIR := src
 BUILD_DIR := build
 BIN_DIR := bin
 CC := gcc
-CFLAGS := -Wall -Wextra -O3 `pkg-config --cflags gtk4`
-LDFLAGS := -ljansson -lm -ldl `pkg-config --libs gtk4`
+CFLAGS := -Wall -Wextra -O3
+#LDFLAGS := -ljansson -lm -ldl `pkg-config --libs gtk4`
 
 TARGET := SegShell
 
@@ -19,7 +19,7 @@ all: $(TARGET)
 # Build SegShell (everything in one binary)
 $(TARGET): $(OBJS)
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
+	$(CC) $(CFLAGS) -o $@ $^
 
 # Compile all source files into .o
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c

@@ -13,7 +13,7 @@ void pwd_main() {
 
     const char *home = getenv("HOME");
     if (home && strncmp(cwd, home, strlen(home)) == 0) {
-        printf("~%s\n", cwd + strlen(home)); // Replace home prefix with ~
+        printf("~%s\n", cwd + strlen(home));
     } else {
         printf("%s\n", cwd);
     }

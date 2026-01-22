@@ -9,16 +9,21 @@
 #include <string.h>
 void get_path();
 char display_cwd[PATH_MAX];
-int main() {
+int main(int argc, char *argv[]) {
+    if (argc > 1) {
+        run_script(argv[1]);
+        return 0;
+    }
+    
     char *env_user = getenv("USER");
     const char *username = env_user ? env_user : "unknown";
-    char cmd[256];
+    char line[256];
     while (1) {
         get_path();
         printf(AC_PURPLE"%s | %s@SegLinux『>』"AC_RESET,display_cwd ,username);
-        fgets(cmd, sizeof(cmd), stdin);
-        input_cleaner(cmd);
-        dispatch_command(cmd);
+        fgets(line, sizeof(line), stdin);
+        input_cleaner(line);
+        dispatch_command(line);
     }
 }
 
@@ -28,7 +33,7 @@ void get_path() {
     const char *home = getenv("HOME");
     
     if (home && strncmp(cwd, home, strlen(home)) == 0) {
-        // Replace home prefix with ~
+        
         snprintf(display_cwd, sizeof(display_cwd), "~%s", cwd + strlen(home));
     } else {
         strncpy(display_cwd, cwd, sizeof(display_cwd));

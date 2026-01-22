@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void help_main() {
+int main() {
     printf("==================================Help==================================\n");
     printf("help  - shows this page       |   exit   - exits the Terminal\n");
     printf("calc  - Calculator            |   about  - about the project\n");
