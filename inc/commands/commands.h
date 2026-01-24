@@ -4,4 +4,5 @@
 void exit_main();
 void cd_main(const char *path);
 void pwd_main();
+int alias_cmd(char *line);
 #endif

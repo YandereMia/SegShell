@@ -1,7 +1,7 @@
 # Minimal Makefile for SegShell modules
 
 # Modules (all standalone commands)
-MODULES = about cat calc clear echo help rm touch time whoami ls
+MODULES = about cat calc clear echo help rm touch time whoami ls alias
 # Directories
 BUILD_DIR = build
 INSTALL_DIR ?= $(HOME)/segshell/bin

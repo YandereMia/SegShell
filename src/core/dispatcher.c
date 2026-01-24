@@ -6,8 +6,8 @@
 #include <limits.h>
 #include "commands/commands.h"
 #include "utils/input_cleaner.h"
-void run_script(const char *filename);
 extern const char *username;
+void run_script(const char *filename);
 void dispatch_command(char *line) {
     if (!line || !*line) return;
 
@@ -51,6 +51,10 @@ void dispatch_command(char *line) {
     if (strcmp(argv[0], "source") == 0 || strcmp(argv[0], "run") == 0) {
         if (argc != 2) {printf("usage: source <file.sg> OR run <file.sg>\n"); return;}
         run_script(argv[1]);
+        return;
+    }
+    if (strcmp(argv[0], "alias") == 0) {
+        alias_cmd(line);
         return;
     }
 

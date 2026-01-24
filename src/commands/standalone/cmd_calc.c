@@ -2,7 +2,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-//./arg0 arg1 arg2 arg3
 int main(int argc, char *argv[]) {
     if (argc != 4) {printf("usage: calc <X> <operator> <Y>\n"); return 1;}
     int x = atoi(argv[1]);

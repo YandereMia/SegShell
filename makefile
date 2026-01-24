@@ -5,7 +5,7 @@ CC := gcc
 CFLAGS := -Wall -Wextra -O3 -Iinc
 
 TARGET := SegShell
-
+CONFIG ?= $(HOME)/.segshellrc
 # Source files (core + utils + commands)
 SRCS := $(wildcard $(SRC_DIR)/core/*.c) \
         $(wildcard $(SRC_DIR)/utils/*.c) \
@@ -15,11 +15,11 @@ OBJS := $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRCS))
 
 all: $(TARGET)
 
-# Build SegShell (everything in one binary)
+# Build SegShell and create config
 $(TARGET): $(OBJS)
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -o $@ $^
-
+	touch $(CONFIG)
 # Compile all source files into .o
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)

@@ -10,14 +10,18 @@
 void get_path();
 char display_cwd[PATH_MAX];
 const char *username;
+const char* get_alias_command(const char *name);
 int main(int argc, char *argv[]) {
     if (argc > 1) {
         run_script(argv[1]);
         return 0;
     }
-
     char *env_user = getenv("USER");
     username = env_user ? env_user : "unknown";
+    char configrc[256];
+    snprintf(configrc, sizeof(configrc), "/home/%s/.segshellrc", username);
+    run_script(configrc);
+
     char line[256];
     while (1) {
         get_path();
@@ -27,6 +31,23 @@ int main(int argc, char *argv[]) {
             break;
         }
         input_cleaner(line);
+        char *argv[64];
+        int argc = 0;
+        char *p = line;
+        while (*p) {
+            while (*p == ' ') p++;
+            if (*p == '\0') break;
+
+            argv[argc++] = p;
+            while (*p && *p != ' ') p++;
+            if (*p) *p++ = '\0';
+        }
+        argv[argc] = NULL;
+        const char *cmd = get_alias_command(argv[0]);
+        if (cmd) {
+            dispatch_command((char *)cmd);
+            continue;
+        }
         dispatch_command(line);
     }
 }
