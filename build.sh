@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # build_all.sh - builds SegLinux_Shell and all standalone commands
 
 set -e  # exit if any command fails

@@ -1,8 +1,8 @@
 #include <stddef.h>
 #include <stdio.h>
-#include "../../inc/utils/input_cleaner.h"
-#include "../../inc/utils/color.h"
-#include "../../inc/core/dispatcher.h"
+#include "utils/input_cleaner.h"
+#include "utils/color.h"
+#include "core/dispatcher.h"
 #include <unistd.h>
 #include <limits.h>
 #include <stdlib.h>
@@ -22,7 +22,10 @@ int main(int argc, char *argv[]) {
     while (1) {
         get_path();
         printf(AC_PURPLE"%s | %s@SegLinux『>』"AC_RESET,display_cwd ,username);
-        fgets(line, sizeof(line), stdin);
+        if (!fgets(line, sizeof(line), stdin)) {
+            printf("\n");
+            break;
+        }
         input_cleaner(line);
         dispatch_command(line);
     }

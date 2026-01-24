@@ -2,14 +2,14 @@ SRC_DIR := src
 BUILD_DIR := build
 BIN_DIR := bin
 CC := gcc
-CFLAGS := -Wall -Wextra -O3
+CFLAGS := -Wall -Wextra -O3 -Iinc
 
 TARGET := SegShell
 
 # Source files (core + utils + commands)
 SRCS := $(wildcard $(SRC_DIR)/core/*.c) \
         $(wildcard $(SRC_DIR)/utils/*.c) \
-        $(wildcard $(SRC_DIR)/commands/internal/*.c)
+        $(wildcard $(SRC_DIR)/commands/built-ins/*.c)
 
 OBJS := $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRCS))
 

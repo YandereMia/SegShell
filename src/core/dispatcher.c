@@ -4,12 +4,11 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <limits.h>
-#include "../../inc/commands/commands.h"
-#include "../../inc/utils/input_cleaner.h"
+#include "commands/commands.h"
+#include "utils/input_cleaner.h"
 void run_script(const char *filename);
 extern const char *username;
 void dispatch_command(char *line) {
-    // skip empty lines
     if (!line || !*line) return;
 
     // ---- split line into argv ----
@@ -17,10 +16,10 @@ void dispatch_command(char *line) {
     int argc = 0;
     char *p = line;
     while (*p) {
-        while (*p == ' ') p++; // skip spaces
+        while (*p == ' ') p++;
         if (*p == '\0') break;
 
-        if (*p == '"') { // handle quoted strings
+        if (*p == '"') {
             p++;
             argv[argc++] = p;
             while (*p && *p != '"') p++;
@@ -34,7 +33,10 @@ void dispatch_command(char *line) {
     argv[argc] = NULL;
 
     // ---- check builtins ----
-    if (strcmp(argv[0], "exit") == 0) { exit(0); }
+    if (strcmp(argv[0], "exit") == 0) {
+        exit(argc > 1 ? atoi(argv[1]) : 0);
+    }
+
     if (strcmp(argv[0], "cd") == 0) {
         if (argc > 1) chdir(argv[1]);
         else chdir(getenv("HOME"));
