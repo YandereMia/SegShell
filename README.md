@@ -5,7 +5,8 @@
 ./SegShell
 
 ## Install
-Standalone commands are installed into ~/segshell/bin
+- Standalone commands are installed into ~/segshell/bin
+- config file located in ~/.segshellrc
 
 ## Features
 - Minimal POSIX-like shell written in C
